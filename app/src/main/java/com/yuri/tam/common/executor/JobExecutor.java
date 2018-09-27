@@ -15,16 +15,19 @@ import java.util.concurrent.TimeUnit;
  * @time 2018年6月5日
  */
 public class JobExecutor implements Executor {
-    private final ThreadPoolExecutor threadPoolExecutor;
+    private final ThreadPoolExecutor mPoolExecutor;
+    private int mCorePoolSize = 5;
+    private int mMaximumPoolSize = 10;
+    private long mKeepAliveTime = 10;
 
     public JobExecutor() {
-        this.threadPoolExecutor = new ThreadPoolExecutor(5, 10, 10, TimeUnit.SECONDS,
+        this.mPoolExecutor = new ThreadPoolExecutor(mCorePoolSize, mMaximumPoolSize, mKeepAliveTime, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(), new JobThreadFactory());
     }
 
     @Override
     public void execute(@NonNull Runnable runnable) {
-        this.threadPoolExecutor.execute(runnable);
+        this.mPoolExecutor.execute(runnable);
     }
 
     private static class JobThreadFactory implements ThreadFactory {
