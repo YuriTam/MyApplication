@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">YuriTam</string>
+
+    <!-- 公共提示语 -->
+    <string name="processing">正在处理</string>
+    <string name="pls_hold_on">请稍候&#8230;</string>
+    <string name="success">成功</string>
+    <string name="fail">失败</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="tip">提示</string>
+    <string name="exist">退出</string>
+    <string name="unknown">未知</string>
+
+    <!-- 异常提示语 -->
+    <string name="net_work_is_not_available">网络不可用，请检查网络连接</string>
+    <string name="unknown_host_exception">服务器不存在</string>
+    <string name="connect_exception">连接失败，请检查网络状态</string>
+    <string name="response_exception">服务器响应超时，请稍候重试</string>
+    <string name="unknown_exception">未知异常</string>
+
+    <!-- 版本更新相关 -->
+    <string name="check_version_update">检查版本更新</string>
+    <string name="check_whether_has_new_version">正在检查是否有新版本，请稍候...</string>
+
+</resources>

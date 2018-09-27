@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/tab_home_btn"
+        android:title="首页" />
+    <item
+        android:id="@+id/nav_coupon"
+        android:icon="@drawable/tab_coupon_btn"
+        android:title="优惠券" />
+    <item
+        android:id="@+id/nav_service"
+        android:icon="@drawable/tab_web_btn"
+        android:title="服务" />
+    <item
+        android:id="@+id/nav_mine"
+        android:icon="@drawable/tab_mine_btn"
+        android:title="我的" />
+</menu>

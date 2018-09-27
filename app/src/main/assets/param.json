@@ -1,0 +1,9 @@
+{
+  "auto_download":"1",
+  "auto_install":"1",
+  "auto_delete_apk":"1",
+  "download_only_wifi":"0",
+  "polling_time":"600000",
+  "location_permission":"1",
+  "write_permission":"1"
+}

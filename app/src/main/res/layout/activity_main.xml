@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yuri.tam.common.widget.DragLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/draglayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/holo_blue_light">
+
+        <FrameLayout
+            android:id="@+id/contentLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <FrameLayout
+            android:id="@+id/contentMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+</com.yuri.tam.common.widget.DragLayout>
