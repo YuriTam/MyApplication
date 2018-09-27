@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'android-aspectjx'
 
 static def apkName() {
     return "YuriTam"
@@ -55,7 +56,6 @@ android {
                 } else if (variant.buildType.name == 'debug') {
                     fileName = "${apkName()}_${defaultConfig.versionName}_debug.apk"
                 }
-//                output.outputFile = new File(outputFile.parent, fileName)
                 outputFileName  = fileName
             }
         }
@@ -85,9 +85,6 @@ repositories {
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-//    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    })
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -136,6 +133,8 @@ dependencies {
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
     //DEX方法超过64K
     implementation 'com.android.support:multidex:1.0.3'
+    //AOP切面编程
+    implementation 'org.aspectj:aspectjrt:1.8.9'
     //扫码
     implementation project(':lib-qr-scan')
     //工具包

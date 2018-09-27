@@ -3,6 +3,7 @@ package com.yuri.tam.base;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.yuri.tam.core.aop.annotation.RunOnMainThread;
 import com.yuri.tam.core.api.IDataSource;
 import com.yuri.tam.core.rx.Event;
 import com.yuri.tam.core.rx.RxBus;
@@ -28,7 +29,6 @@ public class BasePresenter {
 
     protected final IBaseView mView;
     protected final IDataSource mRepository;
-    protected final Handler mHandler;
 
     //是否首次进入
     protected boolean mIsFirstAction = true;
@@ -37,7 +37,6 @@ public class BasePresenter {
         mView = checkNotNull(view);
         mRepository = checkNotNull(repository);
         mView.setPresenter(this);
-        mHandler = new Handler(Looper.getMainLooper());
     }
 
     /**
@@ -70,12 +69,9 @@ public class BasePresenter {
      *
      * @param runnable 线程
      */
+    @RunOnMainThread
     protected void postMainThread(Runnable runnable) {
-        if (Looper.myLooper() == Looper.getMainLooper()){
-            runnable.run();
-        }else {
-            mHandler.post(runnable);
-        }
+        runnable.run();
     }
 
 }
