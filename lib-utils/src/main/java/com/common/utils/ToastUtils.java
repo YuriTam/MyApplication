@@ -17,8 +17,8 @@ public class ToastUtils {
     private static long twoTime = 0;
     private static Context mContext;
 
-    public static void init(Context mContext) {
-        ToastUtils.mContext = mContext.getApplicationContext();
+    public static void init(Context context) {
+        ToastUtils.mContext = context.getApplicationContext();
     }
 
     public static void show(int resId) {
