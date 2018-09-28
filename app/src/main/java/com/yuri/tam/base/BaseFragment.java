@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -15,6 +16,7 @@ import com.common.utils.NetworkUtils;
 import com.common.utils.ToastUtils;
 import com.yuri.tam.R;
 import com.yuri.tam.client.fragment.ProgressDialogFragment;
+import com.yuri.tam.common.utils.PermissionUtils;
 import com.yuri.tam.core.rx.Event;
 import com.yuri.tam.core.rx.RxBus;
 
@@ -184,6 +186,12 @@ public abstract class BaseFragment extends Fragment {
         } else {
             showToast(getString(R.string.unknown_exception));
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        PermissionUtils.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
