@@ -1,5 +1,6 @@
 package com.yuri.tam.client.activity.main;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,6 +10,7 @@ import com.yuri.tam.base.BaseActivity;
 import com.yuri.tam.client.fragment.left.LeftFragment;
 import com.yuri.tam.client.fragment.main.MainFragment;
 import com.yuri.tam.common.widget.DragLayout;
+import com.yuri.tam.core.aop.annotation.Permission;
 import com.yuri.tam.core.api.ApiRepository;
 import com.yuri.tam.core.rx.Event;
 import com.yuri.tam.core.rx.RxBus;
@@ -83,6 +85,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     /**
      * 打开左滑界面
      */
+    @Permission({Manifest.permission.CAMERA})
     public void open() {
         mDragLayout.open(true);
     }

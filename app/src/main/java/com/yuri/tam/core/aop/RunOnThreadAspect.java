@@ -9,8 +9,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 根据注解切换到相应的线程
@@ -19,12 +17,18 @@ import org.slf4j.LoggerFactory;
  * @time 2018年9月27日
  */
 @Aspect
-public class RunOnThreadInjection {
+public class RunOnThreadAspect {
     private Handler mHandler;
 
-    RunOnThreadInjection() {
+    public RunOnThreadAspect() {
         mHandler = new Handler(Looper.getMainLooper());
     }
+
+    /**
+     * 返回void类型的方法
+     */
+    @Pointcut("execution(void *(..))")
+    public void voidMethod() {}
 
     /**
      * 被@RunOnMainThread注解的方法
@@ -38,8 +42,9 @@ public class RunOnThreadInjection {
     @Pointcut("@annotation(com.yuri.tam.core.aop.annotation.RunOnWorkThread)")
     public void annotationWithRunOnWorkThread() {}
 
-    @Around("annotationWithRunOnMainThread()")
+    @Around("annotationWithRunOnMainThread() && voidMethod()")
     public void runOnMainThreadProcess(ProceedingJoinPoint joinPoint) {
+
         postMainThread(() -> {
             try {
                 joinPoint.proceed();
@@ -49,7 +54,7 @@ public class RunOnThreadInjection {
         });
     }
 
-    @Around("annotationWithRunOnWorkThread()")
+    @Around("annotationWithRunOnWorkThread() && voidMethod()")
     public void runOnWorkThreadProcess(ProceedingJoinPoint joinPoint) {
         postWorkThread(() -> {
             try {

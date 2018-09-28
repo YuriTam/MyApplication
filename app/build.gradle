@@ -56,7 +56,7 @@ android {
                 } else if (variant.buildType.name == 'debug') {
                     fileName = "${apkName()}_${defaultConfig.versionName}_debug.apk"
                 }
-                outputFileName  = fileName
+                outputFileName = fileName
             }
         }
     }

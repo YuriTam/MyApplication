@@ -30,23 +30,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".client.activity.splash.SplashActivity"
+        <activity
+            android:name=".client.activity.splash.SplashActivity"
             android:launchMode="standard">
             <intent-filter>
+
                 <!-- 指定此Activity为应用程序的启动界面 -->
                 <action android:name="android.intent.action.MAIN" />
                 <!-- 指定桌面显示应用图标 -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".client.activity.main.MainActivity"
-            android:launchMode="singleTask">
-        </activity>
+        <activity
+            android:name=".client.activity.main.MainActivity"
+            android:launchMode="singleTask"></activity>
         <!-- 扫码界面 -->
         <activity
             android:name="com.netease.scan.ui.CaptureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".client.activity.setting.SettingActivity"></activity>
     </application>
 
 </manifest>
