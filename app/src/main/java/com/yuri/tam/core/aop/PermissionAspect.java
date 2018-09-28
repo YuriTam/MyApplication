@@ -56,6 +56,7 @@ public class PermissionAspect {
                 android.support.v4.app.Fragment fragment = (android.support.v4.app.Fragment) object;
                 PermissionUtils.requestPermissionsResult(fragment, REQUEST_CODE, permissions, new PermissionResult(joinPoint, fragment.getActivity()));
             } else {
+                mLog.debug("----------- 动态申请权限：找不到对应的类型 -------------");
                 joinPoint.proceed();
             }
         }catch (Exception e){
