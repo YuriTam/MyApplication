@@ -6,10 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.common.utils.UIUtils;
 import com.yuri.tam.R;
 import com.yuri.tam.base.BaseFragment;
 import com.yuri.tam.common.widget.TitleBuilder;
 import com.yuri.tam.core.api.ApiRepository;
+
+import butterknife.OnClick;
 
 /**
  * 我的
@@ -40,7 +43,6 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     //初始化标题
     private void initTitle(View view) {
         new TitleBuilder(view)
-                .setExternalTitleBgColor(getResources().getColor(R.color.holo_blue_light))
                 .setTitleText(getString(R.string.mine))
                 .build();
     }
@@ -53,6 +55,24 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     @Override
     protected void initData() {
 
+    }
+
+    @OnClick({R.id.ll_payment, R.id.ll_sale, R.id.ll_version})
+    public void onClick(View view){
+        if (UIUtils.isDoubleClick()) return;
+        switch (view.getId()){
+            case R.id.ll_payment:
+                showToast("敬请期待");
+                break;
+            case R.id.ll_sale:
+                showToast("敬请期待");
+                break;
+            case R.id.ll_version:
+                showToast("敬请期待");
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
