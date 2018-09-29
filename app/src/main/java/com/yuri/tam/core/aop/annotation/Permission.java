@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  * @time 2019年9月27日
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target(ElementType.METHOD)
 public @interface Permission {
 
     /**

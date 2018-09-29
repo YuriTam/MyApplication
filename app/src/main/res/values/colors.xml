@@ -168,4 +168,8 @@
     <color name="color_type_warning">#e8bd4b</color>
     <color name="color_type_success">#90b06e</color>
 
+    <!-- 首页导航栏 -->
+    <color name="tab_checked">#33b5E5</color>
+    <color name="tab_unchecked">#757575</color>
+
 </resources>

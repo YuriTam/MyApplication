@@ -5,18 +5,14 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical">
-    
-    <include layout="@layout/include_title_bar"/>
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_weight="1">
 
-
-
-    </LinearLayout>
+    </FrameLayout>
 
     <include layout="@layout/item_divider"/>
 
@@ -24,9 +20,10 @@
         android:id="@+id/foot_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:forceHasOverlappingRendering="true"
         android:background="?android:attr/windowBackground"
+        app:itemBackground="@null"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
         app:menu="@menu/main_footer"/>
 
 </LinearLayout>

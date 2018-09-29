@@ -1,6 +1,5 @@
 package com.yuri.tam.client.activity.main;
 
-import android.Manifest;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,10 +9,7 @@ import com.yuri.tam.base.BaseActivity;
 import com.yuri.tam.client.fragment.left.LeftFragment;
 import com.yuri.tam.client.fragment.main.MainFragment;
 import com.yuri.tam.common.widget.DragLayout;
-import com.yuri.tam.core.aop.annotation.Permission;
 import com.yuri.tam.core.api.ApiRepository;
-import com.yuri.tam.core.rx.Event;
-import com.yuri.tam.core.rx.RxBus;
 
 import butterknife.BindView;
 
@@ -62,12 +58,12 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     protected void initEvent() {
-        doUseRxBus();
+
     }
 
     @Override
     protected void initData() {
-        RxBus.getDefault().post(new Event<>(1000, "RxBus发送测试消息"));
+
     }
 
     @Override
@@ -76,16 +72,9 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         mPresenter.onStart();
     }
 
-    @Override
-    protected void onRxBusEvent(Event event) {
-        super.onRxBusEvent(event);
-        mLog.debug("event code = {}, event message = {}", event.getCode(), event.getData());
-    }
-
     /**
      * 打开左滑界面
      */
-    @Permission({Manifest.permission.CAMERA})
     public void open() {
         mDragLayout.open(true);
     }

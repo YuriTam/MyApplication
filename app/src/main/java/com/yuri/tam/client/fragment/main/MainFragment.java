@@ -4,25 +4,29 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.common.utils.UIUtils;
 import com.yuri.tam.R;
 import com.yuri.tam.base.BaseFragment;
-import com.yuri.tam.client.activity.main.MainActivity;
-import com.yuri.tam.common.widget.TitleBuilder;
+import com.yuri.tam.client.fragment.coupon.CouponFragment;
+import com.yuri.tam.client.fragment.home.HomeFragment;
+import com.yuri.tam.client.fragment.mine.MineFragment;
+import com.yuri.tam.client.fragment.service.ServiceFragment;
+import com.yuri.tam.common.utils.BottomNavigationViewHelper;
 import com.yuri.tam.core.api.ApiRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
- * 主界面
+ * 主界面窗口
  *
  * @author 谭忠扬-YuriTam
  * @time 2018年9月7日
@@ -30,9 +34,12 @@ import butterknife.Unbinder;
 public class MainFragment extends BaseFragment implements BottomNavigationView.OnNavigationItemSelectedListener, MainContract.View {
 
     @BindView(R.id.foot_navigation)
-    BottomNavigationView mFootNavigation;
+    BottomNavigationView mNavigationView;
 
     private MainContract.Presenter mPresenter;
+
+    private List<Fragment> mFragmentList;
+    private Fragment mCurrentFragment;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,30 +50,26 @@ public class MainFragment extends BaseFragment implements BottomNavigationView.O
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-
-        initTitle(view);
-
-        return view;
-    }
-
-    //初始化标题
-    private void initTitle(View view) {
-        new TitleBuilder(view)
-                .setExternalTitleBgColor(R.color.holo_blue_light)
-                .setLeftImage(R.drawable.slide_bar_icon)
-                .setTitleText("首页")
-                .build();
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
     protected void initEvent() {
-        mFootNavigation.setOnNavigationItemSelectedListener(this);
+        mNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
     @Override
     protected void initData() {
+        BottomNavigationViewHelper.disableShiftMode(mNavigationView);
 
+        //初始化子界面
+        mFragmentList = new ArrayList<>();
+        mFragmentList.add(new HomeFragment());
+        mFragmentList.add(new CouponFragment());
+        mFragmentList.add(new ServiceFragment());
+        mFragmentList.add(new MineFragment());
+
+        showFragment(0);
     }
 
     @Override
@@ -79,29 +82,38 @@ public class MainFragment extends BaseFragment implements BottomNavigationView.O
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_home:
-                break;
+                showFragment(0);
+                return true;
             case R.id.nav_coupon:
-                break;
+                showFragment(1);
+                return true;
             case R.id.nav_service:
-                break;
+                showFragment(2);
+                return true;
             case R.id.nav_mine:
-                break;
+                showFragment(3);
+                return true;
             default:
-                break;
+                return false;
         }
-        return false;
     }
 
-    @OnClick({R.id.title_iv_left})
-    public void onClick(View view) {
-        if (UIUtils.isDoubleClick()) return;
-        switch (view.getId()) {
-            case R.id.title_iv_left:
-                ((MainActivity) getActivity()).open();
-                break;
-            default:
-                break;
+    /**
+     * 显示相应子界面
+     *
+     * @param index 下标
+     */
+    public void showFragment(int index) {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        if (mCurrentFragment != null) {
+            transaction.hide(mCurrentFragment);
         }
+        mCurrentFragment = mFragmentList.get(index);
+        if (!mCurrentFragment.isAdded()) {
+            transaction.add(R.id.main_container, mCurrentFragment);
+        }
+        transaction.show(mCurrentFragment);
+        transaction.commitAllowingStateLoss();
     }
 
     @Override

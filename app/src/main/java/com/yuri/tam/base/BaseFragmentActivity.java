@@ -13,6 +13,8 @@ import com.common.utils.ToastUtils;
 import com.yuri.tam.common.constant.SysCode;
 import com.yuri.tam.common.utils.PermissionUtils;
 
+import butterknife.ButterKnife;
+
 /**
  * base FragmentActivity
  *
@@ -32,54 +34,43 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BarUtils.setTransparentStatusBar(this);
+        //设置布局文件
+        setContentView(layoutId());
+        ButterKnife.bind(this);
 
         //状态栏屏蔽下拉
         //Settings.System.putInt(getContentResolver(), "status_bar_disabled", 1);
         //getWindow().addFlags(3);//屏蔽home键
         //getWindow().addFlags(5);//屏蔽菜单键
-    }
 
-    /**
-     * 执行初始化方法
-     *
-     * @author 谭忠扬-YuriTam
-     * @time 2017年3月31日
-     */
-    protected void onStartInitMethod(){
         initView();
         initEvent();
         initData();
     }
 
     /**
+     * 设置布局文件
+     */
+    protected abstract int layoutId();
+
+    /**
      * 初始化
-     *
-     * @author 谭忠扬-YuriTam
-     * @time 2016年10月9日
      */
     protected abstract void initView();
 
     /**
      * 初始化事件
-     *
-     * @author 谭忠扬-YuriTam
-     * @time 2016年10月9日
      */
     protected abstract void initEvent();
 
     /**
      * 初始化数据
-     *
-     * @author 谭忠扬-YuriTam
-     * @time 2016年10月9日
      */
     protected abstract void initData();
 
     /**
      * 跳转到其它页面
      *
-     * @author 谭忠扬-YuriTam
-     * @date 2016年9月14日
      * @param tarActivity
      */
     protected void intent2Activity(Class<? extends Activity> tarActivity) {
@@ -90,8 +81,6 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     /**
      * 跳转到其它页面-带参数
      *
-     * @author 谭忠扬-YuriTam
-     * @date 2016年9月14日
      * @param tarActivity
      * @param mBundle
      */
@@ -104,8 +93,6 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     /**
      * 跳转到其他界面
      *
-     * @author 谭忠扬-YuriTam
-     * @time 2017年5月5日
      * @param tarActivity
      */
     protected void intent2ActivityForResult(Class<? extends Activity> tarActivity) {
@@ -116,8 +103,6 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     /**
      * 跳转到其他界面，带参数
      *
-     * @author 谭忠扬-YuriTam
-     * @time 2017年5月5日
      * @param tarActivity
      * @param mBundle
      */
@@ -130,8 +115,6 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     /**
      * 弹出提示信息
      *
-     * @author 谭忠扬-YuriTam
-     * @date 2016年9月14日
      * @param msg
      */
     protected void showToast(String msg) {
