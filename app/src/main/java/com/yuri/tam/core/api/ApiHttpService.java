@@ -4,24 +4,19 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yuri.tam.BuildConfig;
 import com.yuri.tam.common.constant.SysConstant;
+import com.yuri.tam.core.bean.UpdateInfo;
 import com.yuri.tam.core.bean.UserInfo;
 import com.yuri.tam.core.http.HttpService;
 
 import java.io.File;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -97,6 +92,18 @@ public class ApiHttpService {
      */
     public Observable<UserInfo> login(String userName, String password){
         return mHttpService.login(userName, password)
+                .timeout(SysConstant.TIME_OUT_60, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 检查应用更新
+     *
+     * @return 返回应用信息
+     */
+    public Observable<UpdateInfo> checkUpdate(){
+        return mHttpService.checkUpdate()
                 .timeout(SysConstant.TIME_OUT_60, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

@@ -5,13 +5,20 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.common.utils.UIUtils;
+import com.stx.xhb.xbanner.XBanner;
 import com.yuri.tam.R;
 import com.yuri.tam.base.BaseFragment;
 import com.yuri.tam.client.activity.main.MainActivity;
 import com.yuri.tam.common.widget.TitleBuilder;
+import com.yuri.tam.common.widget.XXBanner;
+import com.yuri.tam.core.api.ApiRepository;
 
+import java.util.Arrays;
+
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -20,11 +27,19 @@ import butterknife.OnClick;
  * @author 谭忠扬-YuriTam
  * @time 2018年9月29日
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements HomeContract.View, XBanner.XBannerAdapter {
+    private Integer[] mImages = {R.mipmap.ad_point,R.mipmap.ad_quick,R.mipmap.ad_union};
+
+    @BindView(R.id.banner)
+    XXBanner mBanner;
+
+    private HomeContract.Presenter mPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        new HomePresenter(this, ApiRepository.getInstance());
     }
 
     @Override
@@ -41,7 +56,7 @@ public class HomeFragment extends BaseFragment {
         new TitleBuilder(view)
                 .setExternalTitleBgColor(getResources().getColor(R.color.holo_blue_light))
                 .setLeftImage(R.drawable.slide_bar_icon)
-                .setTitleText("首页")
+                .setTitleText(getString(R.string.home))
                 .build();
     }
 
@@ -52,7 +67,25 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+        mBanner.setData(Arrays.asList(mImages), null);
+        mBanner.setmAdapter(this);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mBanner.startAutoPlay();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mBanner.stopAutoPlay();
+    }
+
+    @Override
+    public void loadBanner(XBanner banner, Object model, View view, int position) {
+        ((ImageView) view).setImageResource(mImages[position]);
     }
 
     @OnClick({R.id.title_iv_left})
@@ -65,6 +98,16 @@ public class HomeFragment extends BaseFragment {
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean isActive() {
+        return isAdded();
+    }
+
+    @Override
+    public void setPresenter(HomeContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 
 }

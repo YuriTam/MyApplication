@@ -32,6 +32,7 @@ import java.util.concurrent.TimeoutException;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
+import java8.util.Optional;
 
 /**
  * 继承Fragment
@@ -138,8 +139,9 @@ public abstract class BaseFragment extends Fragment {
      * @param msg
      */
     protected void showToast(String msg) {
-        if (TextUtils.isEmpty(msg)) return;
-        ToastUtils.show(msg);
+        Optional.ofNullable(msg)
+                .filter(s -> !TextUtils.isEmpty(s))
+                .ifPresent(s -> ToastUtils.show(s));
     }
 
     /**

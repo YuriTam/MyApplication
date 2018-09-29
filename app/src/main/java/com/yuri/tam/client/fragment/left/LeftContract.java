@@ -45,6 +45,13 @@ public interface LeftContract {
         void setCheckUpdateIndicator(boolean active);
 
         /**
+         * 异常提示
+         *
+         * @param e 异常信息
+         */
+        void showException(Throwable e);
+
+        /**
          * 界面状态
          *
          * @return

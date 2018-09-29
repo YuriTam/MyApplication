@@ -1,8 +1,5 @@
 package com.yuri.tam.base;
 
-import android.os.Handler;
-import android.os.Looper;
-
 import com.yuri.tam.core.aop.annotation.RunOnMainThread;
 import com.yuri.tam.core.api.IDataSource;
 import com.yuri.tam.core.rx.Event;
@@ -12,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

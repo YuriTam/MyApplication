@@ -1,35 +1,28 @@
 package com.yuri.tam.client.fragment.left;
 
 import android.app.Dialog;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.InputType;
-import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.common.utils.AppUtils;
-import com.common.utils.ToastUtils;
 import com.common.utils.UIUtils;
 import com.yuri.tam.R;
 import com.yuri.tam.base.BaseFragment;
+import com.yuri.tam.client.activity.setting.SettingActivity;
 import com.yuri.tam.client.fragment.EditDialogFragment;
 import com.yuri.tam.client.fragment.ProgressDialogFragment;
-import com.yuri.tam.client.fragment.TextDialogFragment;
 import com.yuri.tam.core.api.ApiRepository;
 
 import java.util.Iterator;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
-import java8.util.Optional;
 
 /**
  * 左侧菜单
@@ -93,7 +86,7 @@ public class LeftFragment extends BaseFragment implements LeftContract.View {
             case R.id.ll_setting_param:
                 mEditDialogFragment = new EditDialogFragment();
                 mEditDialogFragment.setDialogType(EditDialogFragment.DIALOG_TYPE_WARNING);
-                mEditDialogFragment.addTitle("请输入管理员密码");
+                mEditDialogFragment.addTitle(getString(R.string.pls_input_admin_password));
                 mEditDialogFragment.addEditText1(InputType.TYPE_CLASS_NUMBER, 8, null, true);
                 mEditDialogFragment.setPositionText(getString(R.string.confirm));
                 mEditDialogFragment.setNegativeText(getString(R.string.cancel));
@@ -123,7 +116,7 @@ public class LeftFragment extends BaseFragment implements LeftContract.View {
 
     @Override
     public void showIsNewestVersion() {
-        showToast("已经是最新版本");
+        showToast(getString(R.string.already_new_version));
     }
 
     @Override
@@ -132,18 +125,17 @@ public class LeftFragment extends BaseFragment implements LeftContract.View {
             Dialog dialog = mEditDialogFragment.getDialog();
             if (dialog.isShowing()) mEditDialogFragment.dismiss();
         }
+        intent2Activity(SettingActivity.class);
     }
 
     @Override
     public void showErr(String errMsg) {
-        Optional.ofNullable(errMsg)
-                .filter(s -> !TextUtils.isEmpty(s))
-                .ifPresent(s -> ToastUtils.show(s));
+        showToast(errMsg);
     }
 
     @Override
     public void showEmpty() {
-
+        showToast(getString(R.string.input_is_empty));
     }
 
     @Override
@@ -165,6 +157,11 @@ public class LeftFragment extends BaseFragment implements LeftContract.View {
                 mDialogFragment = null;
             }
         }
+    }
+
+    @Override
+    public void showException(Throwable e) {
+        showExceptionTips(e);
     }
 
     @Override

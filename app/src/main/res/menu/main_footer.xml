@@ -3,17 +3,17 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/tab_home_btn"
-        android:title="首页" />
+        android:title="@string/home" />
     <item
         android:id="@+id/nav_coupon"
         android:icon="@drawable/tab_coupon_btn"
-        android:title="优惠券" />
+        android:title="@string/coupon" />
     <item
         android:id="@+id/nav_service"
         android:icon="@drawable/tab_web_btn"
-        android:title="服务" />
+        android:title="@string/service" />
     <item
         android:id="@+id/nav_mine"
         android:icon="@drawable/tab_mine_btn"
-        android:title="我的" />
+        android:title="@string/mine" />
 </menu>

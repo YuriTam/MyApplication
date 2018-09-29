@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.yuri.tam.R;
 import com.yuri.tam.base.BaseFragment;
 import com.yuri.tam.common.widget.TitleBuilder;
+import com.yuri.tam.core.api.ApiRepository;
 
 /**
  * 优惠券
@@ -16,11 +17,15 @@ import com.yuri.tam.common.widget.TitleBuilder;
  * @author 谭忠扬-YuriTam
  * @time 2018年9月29日
  */
-public class CouponFragment extends BaseFragment {
+public class CouponFragment extends BaseFragment implements CouponContract.View {
+
+    private CouponContract.Presenter mPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        new CouponPresenter(this, ApiRepository.getInstance());
     }
 
     @Override
@@ -36,7 +41,7 @@ public class CouponFragment extends BaseFragment {
     private void initTitle(View view) {
         new TitleBuilder(view)
                 .setExternalTitleBgColor(getResources().getColor(R.color.holo_blue_light))
-                .setTitleText("优惠券")
+                .setTitleText(getString(R.string.coupon))
                 .build();
     }
 
@@ -48,5 +53,15 @@ public class CouponFragment extends BaseFragment {
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public boolean isActive() {
+        return isAdded();
+    }
+
+    @Override
+    public void setPresenter(CouponContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 }

@@ -1,4 +1,4 @@
-package com.yuri.tam.client.fragment.main;
+package com.yuri.tam.client.fragment.mine;
 
 import com.yuri.tam.base.IBasePresenter;
 import com.yuri.tam.base.IBaseView;
@@ -9,7 +9,7 @@ import com.yuri.tam.base.IBaseView;
  * @author 谭忠扬-YuriTam
  * @time 2017年10月9日
  */
-public interface MainContract {
+public interface MineContract {
 
     interface View extends IBaseView<Presenter> {
 

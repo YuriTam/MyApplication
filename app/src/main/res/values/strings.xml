@@ -19,8 +19,32 @@
     <string name="response_exception">服务器响应超时，请稍候重试</string>
     <string name="unknown_exception">未知异常</string>
 
-    <!-- 版本更新相关 -->
+    <!-- 应用下载更新相关 -->
+    <string name="apk_name_desc">应用名称：</string>
+    <string name="apk_version_name">版本号：</string>
+    <string name="apk_size">文件大小：</string>
+    <string name="update_message">更新内容：</string>
+    <string name="version_info_tips">版本提示</string>
+    <string name="just_downloading">正在下载</string>
+    <string name="just_connecting">正在连接</string>
+    <string name="start_dwonload">开始下载</string>
+    <string name="download_fail">下载失败</string>
+    <string name="click_to_install">点击安装</string>
+    <string name="md5_check_fail">MD5校验失败</string>
+    <string name="has_no_new_version">暂无新版本</string>
     <string name="check_version_update">检查版本更新</string>
     <string name="check_whether_has_new_version">正在检查是否有新版本，请稍候...</string>
+
+    <!-- 导航栏 -->
+    <string name="home">首页</string>
+    <string name="coupon">优惠券</string>
+    <string name="service">服务</string>
+    <string name="mine">我的</string>
+
+    <string name="setting">设置</string>
+    <string name="pls_input_admin_password">请输入管理员密码</string>
+    <string name="already_new_version">已经是最新版本</string>
+    <string name="password_error">密码错误</string>
+    <string name="input_is_empty">输入内容为空</string>
 
 </resources>

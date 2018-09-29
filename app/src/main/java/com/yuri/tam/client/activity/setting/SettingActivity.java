@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.yuri.tam.R;
 import com.yuri.tam.base.BaseActivity;
+import com.yuri.tam.common.widget.TitleBuilder;
 
 /**
  * 设置界面
@@ -16,6 +17,18 @@ public class SettingActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initTitle();
+    }
+
+    /**
+     * 初始化标题栏
+     */
+    private void initTitle(){
+        new TitleBuilder(this)
+                .setExternalTitleBgColor(getResources().getColor(R.color.holo_blue_light))
+                .setTitleText(getString(R.string.setting))
+                .build();
     }
 
     @Override

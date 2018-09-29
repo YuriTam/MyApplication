@@ -35,13 +35,16 @@ public class SysConstant {
     //1000*60*60*24 一天毫秒数
     public static final long ONE_DAY_MILLS = 86400000;
     //时间解析格式
-    public static final String DATE_TIME_FORMAT_ = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_TIME_FORMAT_DEFAULT = "yyyy-MM-dd HH:mm:ss";
     public static final String DATE_TIME_FORMAT = "yyyyMMddHHmmss";
-    public static final String DATE_FORMAT_ = "yyyy-MM-dd";
+    public static final String DATE_FORMAT_DEFAULT = "yyyy-MM-dd";
     public static final String DATE_FORMAT = "yyyyMMdd";
-    public static final String TIME_FORMAT_ = "HH:mm:ss";
+    public static final String TIME_FORMAT_DEFAULT = "HH:mm:ss";
     public static final String TIME_FORMAT = "HHmmss";
     public static final String RFC_3339_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
+    //管理员默认密码
+    public static final String DEFAULT_PASSWORD = "12345678";
 
     //SD卡路径
     public static final String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
