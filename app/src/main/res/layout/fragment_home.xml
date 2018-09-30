@@ -20,4 +20,8 @@
         app:pointSelect="@drawable/shape_point_selected"
         app:pageChangeDuration="800"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
 </LinearLayout>

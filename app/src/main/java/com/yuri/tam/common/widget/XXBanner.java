@@ -26,6 +26,7 @@ public class XXBanner extends XBanner {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        //禁止父类拦截触摸事件
         getParent().requestDisallowInterceptTouchEvent(true);
         return super.onInterceptTouchEvent(ev);
     }
