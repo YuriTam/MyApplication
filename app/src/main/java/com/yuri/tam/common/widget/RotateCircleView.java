@@ -117,7 +117,7 @@ public class RotateCircleView extends View {
         //让圆环动起来
         if (mAutoRotate){
             startAngle += angleSpeed;
-            if (startAngle == 360) startAngle = 0;
+            if (startAngle >= 360) startAngle = 0;
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
