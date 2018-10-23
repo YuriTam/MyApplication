@@ -10,6 +10,8 @@ static def releaseTime() {
     return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
 
+def APP_INNER_VERSION = "181004005"  //应用程序内部版本号
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -20,6 +22,7 @@ android {
         versionName "1.0.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "APP_INNER_VERSION", "\"" + APP_INNER_VERSION + "\""
     }
     sourceSets.main {
         java.srcDirs = ['src/main/java', 'src/main/java-gen']
@@ -100,15 +103,17 @@ dependencies {
     implementation 'com.google.code.findbugs:jsr305:3.0.1'
     implementation 'com.google.guava:guava:23.2-android'
     //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     //json
     implementation 'com.google.code.gson:gson:2.8.2'
     //okhttp log
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     //rx java
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.12'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
     //图片下载
     implementation 'com.squareup.picasso:picasso:2.5.2'
@@ -130,7 +135,7 @@ dependencies {
     // assist
     debugImplementation 'com.github.markzhai:blockcanary-android:1.5.0'
     releaseImplementation 'com.github.markzhai:blockcanary-no-op:1.5.0'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
     //DEX方法超过64K
     implementation 'com.android.support:multidex:1.0.3'

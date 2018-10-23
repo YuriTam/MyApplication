@@ -38,7 +38,7 @@ import java8.util.Optional;
  */
 public class DownloadService extends IntentService {
     private Logger mLog = LoggerFactory.getLogger(DownloadService.class.getSimpleName());
-    private static final int SHOW_MD5_ERR = 1000;
+
     private static final String MD_5 = "md_5";
     private static final String VERSION_NAME = "version_name";
     private static final String DOWNLOAD_URL = "download_url";

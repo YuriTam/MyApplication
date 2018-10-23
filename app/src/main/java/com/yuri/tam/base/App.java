@@ -1,7 +1,9 @@
 package com.yuri.tam.base;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.multidex.MultiDex;
 
 import com.common.utils.ToastUtils;
@@ -11,6 +13,7 @@ import com.yuri.tam.BuildConfig;
 import com.yuri.tam.common.executor.JobExecutor;
 import com.yuri.tam.core.api.ApiCrashHandler;
 import com.yuri.tam.core.api.ApiRepository;
+import com.yuri.tam.core.manager.AppManager;
 
 import java.util.concurrent.Executor;
 
@@ -51,6 +54,8 @@ public class App extends Application {
         ToastUtils.init(this);
         //初始数据操作库
         ApiRepository.getInstance().initDataSource(this);
+        //注册监听每个activity的生命周期,便于堆栈式管理
+        registerActivityLifecycleCallbacks(mCallbacks);
     }
 
     //创建单例模式
@@ -63,4 +68,31 @@ public class App extends Application {
         return SingletonHolder.INSTANCE;
     }
 
+    private ActivityLifecycleCallbacks mCallbacks = new ActivityLifecycleCallbacks() {
+
+        @Override
+        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+            AppManager.getInstance().addActivity(activity);
+        }
+
+        @Override
+        public void onActivityStarted(Activity activity) {}
+
+        @Override
+        public void onActivityResumed(Activity activity) {}
+
+        @Override
+        public void onActivityPaused(Activity activity) {}
+
+        @Override
+        public void onActivityStopped(Activity activity) {}
+
+        @Override
+        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {}
+
+        @Override
+        public void onActivityDestroyed(Activity activity) {
+            AppManager.getInstance().removeActivity(activity);
+        }
+    };
 }
