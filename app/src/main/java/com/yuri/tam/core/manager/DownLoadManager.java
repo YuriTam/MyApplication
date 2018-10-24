@@ -18,13 +18,16 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 /**
- * Created by goldze on 2017/5/11.
  * 文件下载管理，封装一行代码实现下载
+ * Created by goldze on 2017/5/11.
  */
 public class DownLoadManager {
+    //超时时间
+    private static final int DEFAULT_TIMEOUT = 20;
+
     private static DownLoadManager instance;
 
-    private static Retrofit retrofit;
+    private static Retrofit mRetrofit;
 
     private DownLoadManager() {
         buildNetWork();
@@ -44,7 +47,7 @@ public class DownLoadManager {
 
     //下载
     public void load(String downUrl, final ProgressCallBack callBack) {
-        retrofit.create(ApiService.class)
+        mRetrofit.create(ApiService.class)
                 .download(downUrl)
                 .subscribeOn(Schedulers.io())//请求网络 在调度者的io线程
                 .observeOn(Schedulers.io()) //指定线程保存文件
@@ -56,10 +59,10 @@ public class DownLoadManager {
     private void buildNetWork() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new ProgressInterceptor())
-                .connectTimeout(20, TimeUnit.SECONDS)
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build();
 
-        retrofit = new Retrofit.Builder()
+        mRetrofit = new Retrofit.Builder()
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl("")

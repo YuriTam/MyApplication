@@ -28,24 +28,28 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by goldze on 2017/5/10.
  * RetrofitClient封装单例类, 实现网络请求
+ * Created by goldze on 2017/5/10.
  */
 public class RetrofitClient {
     //超时时间
     private static final int DEFAULT_TIMEOUT = 20;
+    //最大连接个数
+    private static final int MAX_IDLE_CONNECTIONS = 8;
+    //存活时间
+    private static final int KEEP_ALIVE_DURATION = 15;
     //缓存时间
     private static final int CACHE_TIMEOUT = 10 * 1024 * 1024;
     //服务端根路径
-    public static String baseUrl = "https://www.oschina.net/";
+    public static String mBaseUrl = "https://www.oschina.net/";
 
     private static Context mContext = App.sContext;
 
-    private static OkHttpClient okHttpClient;
-    private static Retrofit retrofit;
+    private static OkHttpClient mOkHttpClient;
+    private static Retrofit mRetrofit;
 
-    private Cache cache = null;
-    private File httpCacheDirectory;
+    private Cache mCache = null;
+    private File mHttpCacheDirectory;
 
     private static class SingletonHolder {
         private static RetrofitClient INSTANCE = new RetrofitClient();
@@ -56,27 +60,27 @@ public class RetrofitClient {
     }
 
     private RetrofitClient() {
-        this(baseUrl, null);
+        this(mBaseUrl, null);
     }
 
-    private RetrofitClient(String url, Map<String, String> headers) {
-        if (TextUtils.isEmpty(url)) {
-            url = baseUrl;
+    private RetrofitClient(String baseUrl, Map<String, String> headers) {
+        if (TextUtils.isEmpty(baseUrl)) {
+            baseUrl = mBaseUrl;
         }
-        if (httpCacheDirectory == null) {
-            httpCacheDirectory = new File(mContext.getCacheDir(), "sub_cache");
+        if (mHttpCacheDirectory == null) {
+            mHttpCacheDirectory = new File(mContext.getCacheDir(), "sub_cache");
         }
         try {
-            if (cache == null) {
-                cache = new Cache(httpCacheDirectory, CACHE_TIMEOUT);
+            if (mCache == null) {
+                mCache = new Cache(mHttpCacheDirectory, CACHE_TIMEOUT);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory();
-        okHttpClient = new OkHttpClient.Builder()
+        mOkHttpClient = new OkHttpClient.Builder()
                 .cookieJar(new CookieJarImpl(new PersistentCookieStore(mContext)))
-                .cache(cache)
+                .cache(mCache)
                 .addInterceptor(new BaseInterceptor(headers))
                 .addInterceptor(new CacheInterceptor(mContext))
                 .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
@@ -92,14 +96,14 @@ public class RetrofitClient {
                 )
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                .connectionPool(new ConnectionPool(8, 15, TimeUnit.SECONDS))
                 // 这里你可以根据自己的机型设置同时连接的个数和时间，我这里8个，和每个保持时间为10s
+                .connectionPool(new ConnectionPool(MAX_IDLE_CONNECTIONS, KEEP_ALIVE_DURATION, TimeUnit.SECONDS))
                 .build();
-        retrofit = new Retrofit.Builder()
-                .client(okHttpClient)
+        mRetrofit = new Retrofit.Builder()
+                .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(url)
+                .baseUrl(baseUrl)
                 .build();
 
     }
@@ -112,27 +116,22 @@ public class RetrofitClient {
         if (service == null) {
             throw new RuntimeException("Api service is null!");
         }
-        return retrofit.create(service);
+        return mRetrofit.create(service);
     }
 
     /**
-     * /**
      * execute your customer API
      * For example:
-     * MyApiService service =
-     * RetrofitClient.getInstance(MainActivity.this).create(MyApiService.class);
+     * MyApiService service = RetrofitClient.getInstance().create(MyApiService.class);
      * <p>
-     * RetrofitClient.getInstance(MainActivity.this)
-     * .execute(service.lgon("name", "password"), subscriber)
-     * * @param subscriber
+     * @param subscriber
+     * RetrofitClient.getInstance().execute(service.login("name", "password"), subscriber)
      */
-
     public static <T> T execute(Observable<T> observable, Observer<T> subscriber) {
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
-
         return null;
     }
 }

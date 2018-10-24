@@ -81,7 +81,7 @@ public abstract class ProgressCallBack<T> {
     public void subscribeLoadProgress() {
         mSubscription = RxBus.getDefault().toObservable(DownLoadStateBean.class)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(progressLoadBean -> progress(progressLoadBean.getBytesLoaded(), progressLoadBean.getTotal()));
+                .subscribe(progress -> progress(progress.getBytesLoaded(), progress.getTotal()));
         //将订阅者加入管理站
         RxSubscriptions.add(mSubscription);
     }

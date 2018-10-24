@@ -51,8 +51,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         leftFragment = new LeftFragment();
         mainFragment = new MainFragment();
 
-        transaction.replace(R.id.contentLeft, leftFragment, "");
-        transaction.replace(R.id.contentMain, mainFragment, "");
+        transaction.replace(R.id.contentLeft, leftFragment, "left");
+        transaction.replace(R.id.contentMain, mainFragment, "main");
         transaction.commit();
     }
 
