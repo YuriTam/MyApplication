@@ -142,7 +142,7 @@ dependencies {
     //AOP切面编程
     implementation 'org.aspectj:aspectjrt:1.8.9'
     //扫码
-    implementation project(':lib-qr-scan')
+    api project(':lib-qr-scan')
     //工具包
-    implementation project(':lib-utils')
+    api project(':lib-utils')
 }
