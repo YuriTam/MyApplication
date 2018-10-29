@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.common.utils.UIUtils;
 import com.yuri.tam.R;
 import com.yuri.tam.base.BaseFragment;
+import com.yuri.tam.client.activity.version.VersionActivity;
 import com.yuri.tam.common.widget.TitleBuilder;
 import com.yuri.tam.core.api.ApiRepository;
 
@@ -68,7 +69,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 showToast("敬请期待");
                 break;
             case R.id.ll_version:
-                showToast("敬请期待");
+                intent2Activity(VersionActivity.class);
                 break;
             default:
                 break;

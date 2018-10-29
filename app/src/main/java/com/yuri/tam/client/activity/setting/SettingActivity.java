@@ -26,6 +26,7 @@ public class SettingActivity extends BaseActivity {
      */
     private void initTitle(){
         new TitleBuilder(this)
+                .setLeftImage(R.drawable.arrow_icon)
                 .setExternalTitleBgColor(getResources().getColor(R.color.holo_blue_light))
                 .setTitleText(getString(R.string.setting))
                 .build();

@@ -250,7 +250,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     //判断些界面是为主页
                     if (isMainActivity()){
                         if((System.currentTimeMillis() - mLastTime) > INTERNAL_TIME){
-                            showToast("再按一次退出程序");
+                            showToast("再按一次退出应用");
                             mLastTime = System.currentTimeMillis();
                             return true;
                         }
