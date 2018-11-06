@@ -3,13 +3,12 @@ package com.yuri.tam.core.bean;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.Property;
 
 import java.io.Serializable;
 
 /**
- * 下载信息实体类
+ * 用户信息实体类
  *
  * @author 谭忠扬-YuriTam
  * @time 2018年02月02日
