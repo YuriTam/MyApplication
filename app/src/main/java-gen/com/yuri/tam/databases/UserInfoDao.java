@@ -27,7 +27,7 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property UserName = new Property(1, String.class, "userName", false, "USER_NAME");
         public final static Property Password = new Property(2, String.class, "password", false, "PASSWORD");
-        public final static Property IdCard = new Property(3, String.class, "IdCard", false, "ID_CARD");
+        public final static Property IdCard = new Property(3, String.class, "idCard", false, "ID_CARD");
         public final static Property Age = new Property(4, int.class, "age", false, "AGE");
         public final static Property Sex = new Property(5, int.class, "sex", false, "SEX");
         public final static Property Phone = new Property(6, String.class, "phone", false, "PHONE");
@@ -52,7 +52,7 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"USER_NAME\" TEXT," + // 1: userName
                 "\"PASSWORD\" TEXT," + // 2: password
-                "\"ID_CARD\" TEXT," + // 3: IdCard
+                "\"ID_CARD\" TEXT," + // 3: idCard
                 "\"AGE\" INTEGER NOT NULL ," + // 4: age
                 "\"SEX\" INTEGER NOT NULL ," + // 5: sex
                 "\"PHONE\" TEXT," + // 6: phone
@@ -86,9 +86,9 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             stmt.bindString(3, password);
         }
  
-        String IdCard = entity.getIdCard();
-        if (IdCard != null) {
-            stmt.bindString(4, IdCard);
+        String idCard = entity.getIdCard();
+        if (idCard != null) {
+            stmt.bindString(4, idCard);
         }
         stmt.bindLong(5, entity.getAge());
         stmt.bindLong(6, entity.getSex());
@@ -129,9 +129,9 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             stmt.bindString(3, password);
         }
  
-        String IdCard = entity.getIdCard();
-        if (IdCard != null) {
-            stmt.bindString(4, IdCard);
+        String idCard = entity.getIdCard();
+        if (idCard != null) {
+            stmt.bindString(4, idCard);
         }
         stmt.bindLong(5, entity.getAge());
         stmt.bindLong(6, entity.getSex());
@@ -164,7 +164,7 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // userName
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // password
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // IdCard
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // idCard
             cursor.getInt(offset + 4), // age
             cursor.getInt(offset + 5), // sex
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // phone
