@@ -25,7 +25,7 @@ public class UserInfo implements Serializable {
     @Property(nameInDb = "PASSWORD")
     private String password;          //用户密码
     @Property(nameInDb = "ID_CARD")
-    private String IDcard;            //身份证号
+    private String IdCard;            //身份证号
     @Property(nameInDb = "AGE")
     private int age;                  //年龄
     @Property(nameInDb = "SEX")
@@ -39,14 +39,14 @@ public class UserInfo implements Serializable {
     @Property(nameInDb = "IS_MARRIED")
     private boolean isMarried;        //是否已婚
 
-    @Generated(hash = 1948933910)
-    public UserInfo(Long id, String userName, String password, String IDcard,
+    @Generated(hash = 1323607059)
+    public UserInfo(Long id, String userName, String password, String IdCard,
             int age, int sex, String phone, String avatar, String address,
             boolean isMarried) {
         this.id = id;
         this.userName = userName;
         this.password = password;
-        this.IDcard = IDcard;
+        this.IdCard = IdCard;
         this.age = age;
         this.sex = sex;
         this.phone = phone;
@@ -75,11 +75,11 @@ public class UserInfo implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getIDcard() {
-        return this.IDcard;
+    public String getIdCard() {
+        return this.IdCard;
     }
-    public void setIDcard(String IDcard) {
-        this.IDcard = IDcard;
+    public void setIdCard(String IdCard) {
+        this.IdCard = IdCard;
     }
     public int getAge() {
         return this.age;
