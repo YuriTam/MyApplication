@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
 /**
  * P层基类

@@ -1,16 +1,7 @@
 package com.yuri.tam.client.fragment.main;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.support.v4.app.FragmentActivity;
-import android.text.TextUtils;
-
 import com.yuri.tam.base.BasePresenter;
-import com.yuri.tam.client.fragment.left.LeftContract;
 import com.yuri.tam.core.api.IDataSource;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
