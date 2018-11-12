@@ -48,4 +48,7 @@
     <string name="input_is_empty">输入内容为空</string>
     <string name="version_info">版本信息</string>
 
+    <string name="loading">加载中…</string>
+    <string name="has_no_more_data">没有更多数据了</string>
+
 </resources>
