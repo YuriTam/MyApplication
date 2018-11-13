@@ -10,9 +10,11 @@ import android.text.TextUtils;
 import com.common.utils.FileUtils;
 import com.google.gson.Gson;
 import com.yuri.tam.common.constant.SysConstant;
+import com.yuri.tam.core.bean.UserInfo;
 import com.yuri.tam.core.database.CustomOpenHelper;
 import com.yuri.tam.databases.DaoMaster;
 import com.yuri.tam.databases.DaoSession;
+import com.yuri.tam.databases.UserInfoDao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +23,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
-import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
 import java8.util.Optional;
 import java8.util.function.Function;
 
@@ -124,6 +124,30 @@ public class ApiRepository implements IDataSource {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void saveUser(UserInfo info) {
+        mDaoSession.getUserInfoDao().insert(info);
+    }
+
+    @Override
+    public UserInfo getUserInfo(long userId) {
+        return mDaoSession.getUserInfoDao()
+                .queryBuilder()
+                .where(UserInfoDao.Properties.Id.eq(userId))
+                .build()
+                .unique();
+    }
+
+    @Override
+    public void deleteByUserId(long userId) {
+        mDaoSession.getUserInfoDao().deleteByKey(userId);
+    }
+
+    @Override
+    public void deleteAllUserInfo() {
+        mDaoSession.getUserInfoDao().deleteAll();
     }
 
 }

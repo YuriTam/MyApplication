@@ -9,6 +9,7 @@ import com.common.utils.UIUtils;
 import com.yuri.tam.R;
 import com.yuri.tam.base.BaseActivity;
 import com.yuri.tam.common.widget.TitleBuilder;
+import com.yuri.tam.core.api.ApiRepository;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -19,29 +20,20 @@ import butterknife.OnClick;
  * @author 谭忠扬-YuriTam
  * @time 2018年10月24日
  */
-public class VersionActivity extends BaseActivity {
+public class VersionActivity extends BaseActivity implements VersionContract.View {
 
     @BindView(R.id.iv_logo)
     ImageView ivLogo;
     @BindView(R.id.tv_name_version)
     TextView tvNameVersion;
 
+    private VersionContract.Presenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initTitle();
-    }
-
-    /**
-     * 初始化标题栏
-     */
-    private void initTitle(){
-        new TitleBuilder(this)
-                .setLeftImage(R.drawable.arrow_icon)
-                .setExternalTitleBgColor(getResources().getColor(R.color.holo_blue_light))
-                .setTitleText(getString(R.string.version_info))
-                .build();
+        new VersionPresenter(this, ApiRepository.getInstance());
     }
 
     @Override
@@ -51,7 +43,12 @@ public class VersionActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        //标题栏
+        new TitleBuilder(this)
+                .setLeftImage(R.drawable.arrow_icon)
+                .setExternalTitleBgColor(getResources().getColor(R.color.holo_blue_light))
+                .setTitleText(getString(R.string.version_info))
+                .build();
     }
 
     @Override
@@ -79,4 +76,8 @@ public class VersionActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void setPresenter(VersionContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
 }

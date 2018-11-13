@@ -68,6 +68,9 @@ public class App extends Application {
         return SingletonHolder.INSTANCE;
     }
 
+    /**
+     * Activity 生命周期回调
+     */
     private ActivityLifecycleCallbacks mCallbacks = new ActivityLifecycleCallbacks() {
 
         @Override

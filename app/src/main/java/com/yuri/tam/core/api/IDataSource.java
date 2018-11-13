@@ -2,6 +2,8 @@ package com.yuri.tam.core.api;
 
 import android.content.Context;
 
+import com.yuri.tam.core.bean.UserInfo;
+
 /**
  * 数据操作接口
  *
@@ -14,6 +16,8 @@ public interface IDataSource {
      * 初始化相关数据
      */
     void initDataSource(Context context);
+
+    /************************ 配置文件相关 *************************/
 
     /**
      * 保存数据到map内存表
@@ -36,4 +40,33 @@ public interface IDataSource {
      * 同步更新数据，即写入到文件中
      */
     void syncParamValue();
+
+    /************************ 用户表相关 *************************/
+
+    /**
+     * 保存用户信息
+     *
+     * @param info
+     */
+    void saveUser(UserInfo info);
+
+    /**
+     * 根据ID来查询用户信息
+     * @param userId 用户ID
+     *
+     * @return
+     */
+    UserInfo getUserInfo(long userId);
+
+    /**
+     * 根据ID来删除用户信息
+     *
+     * @param userId
+     */
+    void deleteByUserId(long userId);
+
+    /**
+     * 删除所有用户信息
+     */
+    void deleteAllUserInfo();
 }

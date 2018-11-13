@@ -18,18 +18,6 @@ public class SettingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initTitle();
-    }
-
-    /**
-     * 初始化标题栏
-     */
-    private void initTitle(){
-        new TitleBuilder(this)
-                .setLeftImage(R.drawable.arrow_icon)
-                .setExternalTitleBgColor(getResources().getColor(R.color.holo_blue_light))
-                .setTitleText(getString(R.string.setting))
-                .build();
     }
 
     @Override
@@ -39,7 +27,12 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        //标题栏
+        new TitleBuilder(this)
+                .setLeftImage(R.drawable.arrow_icon)
+                .setExternalTitleBgColor(getResources().getColor(R.color.holo_blue_light))
+                .setTitleText(getString(R.string.setting))
+                .build();
     }
 
     @Override

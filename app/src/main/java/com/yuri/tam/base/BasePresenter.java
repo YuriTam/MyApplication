@@ -23,7 +23,7 @@ import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
  */
 public class BasePresenter {
     protected final Logger mLog = LoggerFactory.getLogger(getClass().getSimpleName());
-    private static final long DEFAULT_DELAY_MILLIS = 1000;
+    private static final long DEFAULT_DELAY_MILLIS = 100;
     //订阅管理
     private final CompositeDisposable mDisposables = new CompositeDisposable();
 
