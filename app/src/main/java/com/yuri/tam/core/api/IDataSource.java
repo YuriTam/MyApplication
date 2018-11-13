@@ -59,6 +59,13 @@ public interface IDataSource {
     UserInfo getUserInfo(long userId);
 
     /**
+     * 更新用户信息
+     *
+     * @param info
+     */
+    void updateUserInfo(UserInfo info);
+
+    /**
      * 根据ID来删除用户信息
      *
      * @param userId

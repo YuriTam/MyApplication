@@ -141,6 +141,11 @@ public class ApiRepository implements IDataSource {
     }
 
     @Override
+    public void updateUserInfo(UserInfo info) {
+        mDaoSession.getUserInfoDao().update(info);
+    }
+
+    @Override
     public void deleteByUserId(long userId) {
         mDaoSession.getUserInfoDao().deleteByKey(userId);
     }
