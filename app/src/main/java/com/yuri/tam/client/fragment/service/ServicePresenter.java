@@ -3,7 +3,7 @@ package com.yuri.tam.client.fragment.service;
 import com.yuri.tam.base.BasePresenter;
 import com.yuri.tam.core.api.IDataSource;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static com.common.utils.Utils.checkNotNull;
 
 /**
  * 服务接口实现

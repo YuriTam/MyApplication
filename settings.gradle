@@ -1,1 +1,1 @@
-include ':app', ':lib-qr-scan', ':lib-utils'
+include ':app', ':lib-qr-scan', ':lib-utils', ':lib-app-bar'

@@ -9,7 +9,7 @@ import com.yuri.tam.core.bean.CouponInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static com.common.utils.Utils.checkNotNull;
 
 /**
  * 优惠券接口实现

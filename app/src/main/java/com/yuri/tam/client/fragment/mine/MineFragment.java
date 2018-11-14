@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import com.common.utils.UIUtils;
 import com.yuri.tam.R;
 import com.yuri.tam.base.BaseFragment;
+import com.yuri.tam.client.activity.payment.PaymentActivity;
+import com.yuri.tam.client.activity.sale.SaleActivity;
 import com.yuri.tam.client.activity.version.VersionActivity;
 import com.yuri.tam.common.widget.TitleBuilder;
 import com.yuri.tam.core.api.ApiRepository;
@@ -63,10 +65,10 @@ public class MineFragment extends BaseFragment implements MineContract.View {
         if (UIUtils.isDoubleClick()) return;
         switch (view.getId()){
             case R.id.ll_payment:
-                showToast("敬请期待");
+                intent2Activity(PaymentActivity.class);
                 break;
             case R.id.ll_sale:
-                showToast("敬请期待");
+                intent2Activity(SaleActivity.class);
                 break;
             case R.id.ll_version:
                 intent2Activity(VersionActivity.class);

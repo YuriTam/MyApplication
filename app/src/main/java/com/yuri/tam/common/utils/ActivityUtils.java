@@ -23,7 +23,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.yuri.tam.R;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static com.common.utils.Utils.checkNotNull;
 
 public class ActivityUtils {
 

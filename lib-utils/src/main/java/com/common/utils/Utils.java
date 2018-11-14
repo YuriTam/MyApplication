@@ -37,4 +37,19 @@ public final class Utils {
         }
         throw new NullPointerException("should be initialized in application");
     }
+
+    /**
+     * 检查对象是否为空
+     *
+     * @param obj 相应对象
+     * @param <T>
+     * @return
+     */
+    public static <T> T checkNotNull(T obj) {
+        if (obj == null) {
+            throw new NullPointerException();
+        }
+        return obj;
+    }
+
 }

@@ -44,13 +44,26 @@
         <activity
             android:name=".client.activity.main.MainActivity"
             android:launchMode="singleTask" />
+        <activity
+            android:name=".client.activity.payment.PaymentActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".client.activity.main.MainActivity" />
+        </activity>
+        <activity android:name=".client.activity.sale.SaleActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".client.activity.main.MainActivity" />
+        </activity>
+        <activity android:name=".client.activity.setting.SettingActivity" />
+        <activity android:name=".client.activity.version.VersionActivity" />
         <!-- 扫码界面 -->
         <activity
             android:name="com.netease.scan.ui.CaptureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".client.activity.setting.SettingActivity" />
-        <activity android:name=".client.activity.version.VersionActivity"></activity>
     </application>
 
 </manifest>
