@@ -28,6 +28,15 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Title_Appearance" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Title">
+
+    </style>
+
+    <style name="Subtitle_Appearance" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

@@ -1,0 +1,31 @@
+ext {
+    //常量配置
+    constants = [
+            applicationId   : "com.yuri.tam",
+            appName         : "YuriTam",
+            appInnerVersion : "181004005",
+            releaseBaseUrl  : "http:www.baidu.com/release/",
+            debugBaseUrl    : "http:www.baidu.com/debug/"
+    ]
+    //android开发版本配置
+    configs = [
+            compileSdkVersion: 27,
+            minSdkVersion    : 19,
+            targetSdkVersion : 27,
+            versionCode      : 1,
+            versionName      : "1.0.0",
+    ]
+    //version配置
+    versions = [
+            "support-version": "27.1.1",
+            "junit-version"  : "4.12",
+    ]
+    //support 配置
+    libs = [
+            junit           : "junit:junit:4.12",
+            appcompatV7     : "com.android.support:appcompat-v7:${versions["support-version"]}",
+            supportV4       : "com.android.support:support-v4:${versions["support-version"]}",
+            cardView        : "com.android.support:cardview-v7:${versions["support-version"]}",
+            design          : "com.android.support:design:${versions["support-version"]}"
+    ]
+}

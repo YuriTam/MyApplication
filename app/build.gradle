@@ -2,25 +2,21 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'android-aspectjx'
 
-static def apkName() {
-    return "YuriTam"
-}
 static def releaseTime() {
     return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
-def APP_INNER_VERSION = "181004005"  //应用程序内部版本号
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion configs.compileSdkVersion
     defaultConfig {
-        applicationId "com.yuri.tam"
-        minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0.0"
+        applicationId constants.applicationId
+        minSdkVersion configs.minSdkVersion
+        targetSdkVersion configs.targetSdkVersion
+        versionCode configs.versionCode
+        versionName configs.versionName
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "APP_INNER_VERSION", "\"" + APP_INNER_VERSION + "\""
+        buildConfigField "String", "APP_INNER_VERSION", "\"" + constants.appInnerVersion + "\""
     }
     sourceSets.main {
         java.srcDirs = ['src/main/java', 'src/main/java-gen']
@@ -30,7 +26,7 @@ android {
     buildTypes {
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
-            buildConfigField "String", "BASE_URL", "\"http:www.baidu.com/release/\""
+            buildConfigField "String", "BASE_URL", "\"" + constants.releaseBaseUrl + "\""
             minifyEnabled true
             zipAlignEnabled true
             shrinkResources true
@@ -38,7 +34,7 @@ android {
         }
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
-            buildConfigField "String", "BASE_URL", "\"http:www.baidu.com/debug/\""
+            buildConfigField "String", "BASE_URL", "\"" + constants.debugBaseUrl + "\""
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
@@ -53,9 +49,9 @@ android {
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
                 // 输出apk名称为 Payment_v1.0.0_20170816_release.apk
                 if (variant.buildType.name == 'release') {
-                    fileName = "${apkName()}_${defaultConfig.versionName}_${releaseTime()}_release.apk"
+                    fileName = "${constants.appName}_${defaultConfig.versionName}_${releaseTime()}_release.apk"
                 } else if (variant.buildType.name == 'debug') {
-                    fileName = "${apkName()}_${defaultConfig.versionName}_debug.apk"
+                    fileName = "${constants.appName}_${defaultConfig.versionName}_debug.apk"
                 }
                 outputFileName = fileName
             }
@@ -87,15 +83,15 @@ repositories {
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
+    testImplementation libs.junit
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //UI相关
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation libs.appcompatV7
+    implementation libs.supportV4
+    implementation libs.cardView
+    implementation libs.design
     //辅助相关
     implementation 'net.sourceforge.streamsupport:streamsupport:1.5.6'
     implementation 'com.nineoldandroids:library:2.4.0'
