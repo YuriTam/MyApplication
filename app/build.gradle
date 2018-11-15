@@ -72,8 +72,9 @@ android {
         jumboMode true
     }
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        encoding 'UTF-8'
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 }
 repositories {
