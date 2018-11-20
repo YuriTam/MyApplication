@@ -1,10 +1,14 @@
 package com.yuri.tam.client.activity.setting;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.common.utils.UIUtils;
 import com.yuri.tam.R;
 import com.yuri.tam.base.BaseActivity;
 import com.yuri.tam.common.widget.TitleBuilder;
+
+import butterknife.OnClick;
 
 /**
  * 设置界面
@@ -43,5 +47,39 @@ public class SettingActivity extends BaseActivity {
     @Override
     protected void initData() {
 
+    }
+
+    @OnClick({R.id.title_iv_left, R.id.ll_merchant_setting, R.id.ll_key_setting, R.id.ll_system_setting,
+            R.id.ll_trans_setting, R.id.ll_sign_setting, R.id.ll_other_setting, R.id.ll_version_info})
+    public void onViewClicked(View view) {
+        if (UIUtils.isDoubleClick()) return;
+        switch (view.getId()) {
+            case R.id.title_iv_left:
+                finish();
+                break;
+            case R.id.ll_merchant_setting:
+                showToast("敬请期待...");
+                break;
+            case R.id.ll_key_setting:
+                showToast("敬请期待...");
+                break;
+            case R.id.ll_system_setting:
+                showToast("敬请期待...");
+                break;
+            case R.id.ll_trans_setting:
+                showToast("敬请期待...");
+                break;
+            case R.id.ll_sign_setting:
+                showToast("敬请期待...");
+                break;
+            case R.id.ll_other_setting:
+                showToast("敬请期待...");
+                break;
+            case R.id.ll_version_info:
+                showToast("敬请期待...");
+                break;
+            default:
+                break;
+        }
     }
 }
