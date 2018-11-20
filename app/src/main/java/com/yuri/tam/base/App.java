@@ -42,18 +42,20 @@ public class App extends Application {
 
         sContext = getApplicationContext();
         sExecutor = new JobExecutor();
-        //异常捕捉
-        if (!BuildConfig.DEBUG){
-            ApiCrashHandler.getInstance().init(this);
+
+        if (BuildConfig.DEBUG){
+            //UI检测
+            BlockCanary.install(sContext, new AppBlockCanaryContext()).start();
+            //内存泄漏检测
+            LeakCanary.install(this);
+        }else {
+            //异常捕捉
+            ApiCrashHandler.getInstance().init(sContext);
         }
-        //UI检测
-        BlockCanary.install(this, new AppBlockCanaryContext()).start();
-        //内存泄漏检测
-        LeakCanary.install(this);
         //初始化提示工具类
-        ToastUtils.init(this);
+        ToastUtils.init(sContext);
         //初始数据操作库
-        ApiRepository.getInstance().initDataSource(this);
+        ApiRepository.getInstance().initDataSource(sContext);
         //注册监听每个activity的生命周期,便于堆栈式管理
         registerActivityLifecycleCallbacks(mCallbacks);
     }

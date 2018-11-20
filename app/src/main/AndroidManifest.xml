@@ -44,15 +44,12 @@
         <activity
             android:name=".client.activity.main.MainActivity"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".client.activity.payment.PaymentActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".client.activity.payment.PaymentActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".client.activity.main.MainActivity" />
         </activity>
-        <activity android:name=".client.activity.sale.SaleActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".client.activity.sale.SaleActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".client.activity.main.MainActivity" />
